@@ -98,11 +98,8 @@ if __name__ == '__main__':
 ```
 pip install -r requestment.txt
 ```
-
 2. 运行main方法
-
 ![运行](https://upload-images.jianshu.io/upload_images/6777588-88bae94926fafc62.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 3. 接口测试
 ![postman](https://upload-images.jianshu.io/upload_images/6777588-1d271756ec7f357a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
