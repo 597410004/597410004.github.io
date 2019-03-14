@@ -3,9 +3,9 @@ layout:     post
 title:      python编写天气接口
 subtitle:   weather-api
 date:       2019-03-14
-author:     BY
+author:     skinny
 header-img: img/post-bg-2015.jpg
-catalog:         true
+catalog:    true
 tags:
     - python
     - flask
@@ -18,6 +18,7 @@ tags:
 1. request
 2. beautifulsoup
 3. flask
+
 
 ## 思路
 
