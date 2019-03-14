@@ -90,4 +90,4 @@ service-worker: true
 
 
 
-theme: jekyll-theme-modernist
+theme: jekyll-theme-midnight
