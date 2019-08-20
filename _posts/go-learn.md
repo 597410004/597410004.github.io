@@ -1,0 +1,136 @@
+---
+layout:     post
+title:      go 学习参考(一)
+subtitle:   email
+date:       2019-08-20
+author:     clown
+header-img: img/post-bg-ios9-web.jpg
+catalog:         true
+tags:
+    - go
+    - learn
+---
+# 常量定义(char2)
+1. var a int=1
+2. var a=1
+3. var a,b=1
+4. a:=1(最常用的方式)
+# 一行定义多个变量
+1. a,b=b,a
+2. a,b,c,d=1,2,3,4
+# 函数
+// 相当于while true
+```
+func TestWhileLoop(t *testing.T) {
+	n := 0
+	for n < 15 {
+		n++
+		t.Log(n)
+	}
+}
+```
+// switch多个常量
+```
+func TestSwitchMultiCase(t *testing.T) {
+	for i := 0; i < 5; i++ {
+		switch i {
+		case 0, 3:
+			t.Log("0,3")
+		case 1, 2:
+			t.Log("1,2")
+		default:
+			t.Log("default")
+		}
+	}
+}
+```
+// switch 多个条件
+```
+func TestSwitchMultiCase2(t *testing.T) {
+	for i := 0; i < 5; i++ {
+		switch {
+		case i%2 == 0:
+			t.Log("0,3")
+		case i%3 == 0:
+			t.Log("1,2")
+		default:
+			t.Log("default")
+		}
+	}
+}
+```
+# 数组定义
+```
+func TestArray(t *testing.T) {
+	var arr [3]int
+	arr1 := [5]int{1, 2, 3, 4, 5}
+	arr2 := [...]int{1, 2, 3, 4, 5, 8, 9}
+	t.Log(arr[2], arr1[4], arr2[6])
+}
+```
+# 数组遍历
+```
+func TestArrayTravel(t *testing.T) {
+	// 不确定长度 用...
+	arr2 := [...]int{1, 2, 3, 4, 5, 8, 9}
+	for idx, e := range arr2 {
+		t.Log(idx, e)
+	}
+	// 使用占位符标记index,如果不使用 只用一个变量,则只能遍历index
+	for _, e := range arr2 {
+		t.Log(e)
+	}
+	for e := range arr2 {
+		t.Log(e)
+	}
+}
+```
+# 切片
+```
+// 数组转为切片
+func TestArraySection(t *testing.T) {
+	arr2 := [...]int{1, 2, 3, 4, 5, 8, 9}
+	//不可以使用负数,只包含结尾,不包含开头
+	arr2_sec1 := arr2[:4]
+	arr2_sec2 := arr2[2:]
+	arr2_sec3 := arr2[:]
+	arr2_sec4 := arr2[2:3]
+	t.Log(arr2_sec1, arr2_sec2, arr2_sec3, arr2_sec4)
+}
+```
+```
+// 切片声明
+func TestSlice(t *testing.T) {
+	var s0 []int
+	t.Log(len(s0), cap(s0))
+	s2 := make([]int, 3, 5)
+	t.Log(len(s2), cap(s2))
+	s2 = append(s2, 1)
+	t.Log(s2, len(s2), cap(s2))
+}
+```
+```
+//切片增长容量变化
+func TestGrowing(t *testing.T) {
+	s := []int{}
+	for i := 0; i < 5; i++ {
+		s = append(s, i)
+		// len相当于数组默认元素个数,cap相当于数组容量个数,可无限延长,每次延长为上一次2倍容量
+		t.Log(len(s), cap(s))
+	}
+}
+```
+```
+//切片共享结构测试
+func TestSliceShareMemory(t *testing.T) {
+	year := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	year2 := year[1:5]
+	// 容量为从1开始到结尾的共享容量
+	t.Log(len(year2), cap(year2), year2)
+	year2 = append(year2, 0)
+	t.Log(len(year2), cap(year2), year2)
+	t.Log(year)
+	year2[2] = 0
+	t.Log(year)
+}
+```
